@@ -2,25 +2,20 @@
 <html>
 	<head>
 		<title>node-upload-example</title>
+		<link rel="stylesheet" href="/styles.css" type="text/css">
 	</head>
 	<body>
-		<h1>node-upload-example</h1>
-		<h2>Uploaded Files</h2>
-		<ul id="file-list"></ul>
-		<form>
-			<fieldset>
-				<legend>Upload Form</legend>
-				<labe>Test Text</labe>
-				<br />
-				<input id="text-input" type="text" />
-				<br />
-				<lable>Test File</lable>
-				<br />
-				<input id="file-input" type="file" />
-				<br />
-				<button id="submit-button">Submit</button>
-			</fieldset>
-		</form>
+		<header>
+			<h1><a href="index.html">MediaRecorder examples</a></h1>
+			<p>Record live audio</p>
+		</header>
+		<main>
+			<h1>node-upload-example</h1>
+			<h2>Uploaded Files</h2>
+			<ul id="file-list"></ul>
+			<p><button id="record" disabled>Record audio</button> <button id="stop" disabled>Stop</button></p>
+			<p><audio id="audio" controls></audio></p>
+		</main>
 		<script type="text/javascript" src="/main.js"></script>
 	</body>
 </html>

@@ -24,7 +24,7 @@ const upload = multer({
 	storage: multer.diskStorage({
 		destination: uploadDir,
 		filename: function (req, file, nameFile) {
-			nameFile(null, file.originalname);
+			nameFile(null, `recording-${Date.now()}.webm`);
 		}
 	})
 });
@@ -49,15 +49,8 @@ express()
 		});
 	})
 	// handle the file upload using multe
-	.post('/upload', upload.single('testFile'), (req, res) => {
-		log(`Received text field: ${req.body.testText}`);
-		log(`Received file: ${req.file.originalname}`);
-		if (req.file.mimetype === 'text/plain') {
-			fs.readFile(path.join(uploadDir, req.file.originalname), (error, data) => {
-				log(`File content: ${data.toString()}`);
-			});
-		}
-		// multer automatically saves the file so all we have to do is end the request
+	.post('/upload', upload.single('recording'), (req, res) => {
+		log('Received audio file');
 		res.end();
 	})
 	// start the server
