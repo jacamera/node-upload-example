@@ -1,6 +1,7 @@
 // import our dependencies
 const
 	fs = require('fs'),
+	path = require('path'),
 	express = require('express'),
 	multer = require('multer');
 
@@ -49,8 +50,13 @@ express()
 	})
 	// handle the file upload using multe
 	.post('/upload', upload.single('testFile'), (req, res) => {
-		log(`Received file: ${req.file.originalname}`);
 		log(`Received text field: ${req.body.testText}`);
+		log(`Received file: ${req.file.originalname}`);
+		if (req.file.mimetype === 'text/plain') {
+			fs.readFile(path.join(uploadDir, req.file.originalname), (error, data) => {
+				log(`File content: ${data.toString()}`);
+			});
+		}
 		// multer automatically saves the file so all we have to do is end the request
 		res.end();
 	})
